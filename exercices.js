@@ -126,6 +126,57 @@ const arrow_person7 = {
     }
 }
 
-arrow_person7.sayName(); // prints undefined, because it's pulling this from the global context!!!
+//arrow_person7.sayName(); // prints undefined, because it's pulling this from the global context!!!
 
 
+// #8 More closures ------------------------------------------------------------------------------------------------------------------------------
+const a8 = 1;
+function sum8a(){
+    const b8 = 2;
+    return sum8b();
+}
+const b8 = 3;
+const c8 = 1;
+function sum8b(){
+    const c8 = 3;
+    return a8 + b8 +c8;
+}
+// console.log(sum8a()); // Prints 7!
+
+// #9 More closures!! ------------------------------------------------------------------------------------------------------------------------------
+const person9 = {
+    name: "Andre",
+    tasks: ["Eat", "Code", "Sleep"],
+    showTasks: function (){
+        this.tasks.forEach(function (task) {
+            console.log(this.name + " wants to: " + task);
+        });
+    },
+    showTasks2: function (){
+        this.tasks.forEach( (task) => {
+            console.log(this.name + " wants to: " + task);
+        });
+    },
+};
+//person9.showTasks(); // undefined wants to: Eat ---> NOK
+//person9.showTasks2();// Andre wants to: Eat ---> OK
+
+// #10 Map vs filter vs reduce ------------------------------------------------------------------------------------------------------------------------------
+// 1) They don't modify original array
+// 2) They don't use external variables
+// 3) They don't generate secondary effects. won't modify outer vars
+const array10 = [1, 2, 3];
+
+//Map returns a new array applying logic, original stays the same
+/* const array10Mapped = array10.map((x) => x + 1);
+console.log(array10Mapped);
+console.log(array10); */
+//Filter returns a new array applying logic, original stays the same
+/* const array10Filtered = array10.filter((x) => x % 2 == 0);
+console.log(array10Filtered);
+console.log(array10); */
+//Reducer returns a single val, original stays the same
+/* const reducer10 = (acumulator, element) => acumulator + element;
+const reducedArray10 = array10.reduce(reducer10);
+console.log(reducedArray10);
+console.log(array10); */
